@@ -3,13 +3,18 @@ import { Metadata } from "next";
 import { SliceZone } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
-// import { components } from "@/slices";
+import { components } from "@/slices";
 
-export async function Page() {
+export default async function Page() {
   const client = createClient();
   const page = await client.getSingle("homepage");
 
-  // return <SliceZone slices={page.data.slices} components={components} />;
+  return (
+    <main>
+      <h1>🤝</h1>
+      <SliceZone slices={page.data.slices} components={components} />
+    </main>
+  )
 }
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -22,10 +27,11 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Home() {
-  return (
-    <main>
-        <h1 className='font-body '>Hello</h1>
-    </main>
-  )
-}
+// export default function Home() {
+//   return (
+//     <main>
+//       <Page />
+//       <h1 className='font-body '>Hello</h1>
+//     </main>
+//   )
+// }
