@@ -1,6 +1,7 @@
 import { createClient } from '@/prismicio'
 import { PrismicNextLink } from '@prismicio/next'
 import Link from 'next/link'
+import Bounded from '../section/Bounded'
 
 const Header = async () => {
 
@@ -9,19 +10,26 @@ const Header = async () => {
   const data = await res.getSingle('settings')
 
   return (
-    <header>
-      <Link href="/">{data.data.site_title}</Link>
+    <Bounded as={'header'} className='py-4 md:py-6 lg:py-8'>
+      <div className='flex gap-4 items-center justify-between sm:flex-row flex-col'>
+      
+        <Link href="/">
+          <img src="logo.svg" alt={`${data.data.site_title}`} />
+        </Link>
 
-      {/* mapping over navs  */}
-      <ul>
-        <li>
-          {data.data.navigation.map(item => (
-            // using prismic link Component 
-            <PrismicNextLink key={item.label} field={item.link}>{item.label}</PrismicNextLink>
-          ))}
-        </li>
-      </ul>
-    </header>
+        {/* mapping over navs  */}
+        <ul className='flex'>
+          <li>
+            {data.data.navigation.map(item => (
+              // using prismic link Component 
+              <PrismicNextLink className='p-3' key={item.label} field={item.link}>
+                {item.label}
+              </PrismicNextLink>
+            ))}
+          </li>
+        </ul>
+      </div>
+    </Bounded>
   )
 }
 

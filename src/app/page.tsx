@@ -11,7 +11,6 @@ export default async function Page() {
 
   return (
     <main>
-      <h1>🤝</h1>
       <SliceZone slices={page.data.slices} components={components} />
     </main>
   )
