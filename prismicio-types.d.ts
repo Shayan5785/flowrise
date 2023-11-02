@@ -547,6 +547,121 @@ export type TestemonialsSlice = prismic.SharedSlice<
   TestemonialsSliceVariation
 >;
 
+/**
+ * Primary content in *TextWithImage → Primary*
+ */
+export interface TextWithImageSliceDefaultPrimary {
+  /**
+   * Title field in *TextWithImage → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_with_image.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Image field in *TextWithImage → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_with_image.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text field in *TextWithImage → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_with_image.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for TextWithImage Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextWithImageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TextWithImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *TextWithImage → Primary*
+ */
+export interface TextWithImageSliceRevertPrimary {
+  /**
+   * Title field in *TextWithImage → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_with_image.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Image field in *TextWithImage → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_with_image.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text field in *TextWithImage → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_with_image.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Revert variation for TextWithImage Slice
+ *
+ * - **API ID**: `revert`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextWithImageSliceRevert = prismic.SharedSliceVariation<
+  "revert",
+  Simplify<TextWithImageSliceRevertPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TextWithImage*
+ */
+type TextWithImageSliceVariation =
+  | TextWithImageSliceDefault
+  | TextWithImageSliceRevert;
+
+/**
+ * TextWithImage Shared Slice
+ *
+ * - **API ID**: `text_with_image`
+ * - **Description**: TextWithImage
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextWithImageSlice = prismic.SharedSlice<
+  "text_with_image",
+  TextWithImageSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -583,6 +698,12 @@ declare module "@prismicio/client" {
       TestemonialsSliceDefaultItem,
       TestemonialsSliceVariation,
       TestemonialsSliceDefault,
+      TextWithImageSlice,
+      TextWithImageSliceDefaultPrimary,
+      TextWithImageSliceRevertPrimary,
+      TextWithImageSliceVariation,
+      TextWithImageSliceDefault,
+      TextWithImageSliceRevert,
     };
   }
 }
