@@ -13,12 +13,12 @@ export type TextWithImageProps =
 
 const components: JSXMapSerializer = {
   heading2: ({ children }) => (
-    <Heading as="h2" size="md" className="my-5 md:mb-9 font-semibold">
+    <Heading as="h2" size="md">
       {children}
     </Heading>
   ),
   paragraph: ({ children }) => (
-    <p className="text-xl md:text-2xl font-normal font-body text-slate-600 mb-8">
+    <p className="max-w-md text-lg font-body text-slate-600">
       {children}
     </p>
   ),
@@ -32,15 +32,17 @@ const TextWithImage = ({ slice }: TextWithImageProps): JSX.Element => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="grid md:grid-cols-2 place-items-center"
     >
-      <PrismicNextImage
-        className={clsx(slice.variation === "revert" && 'md:order-2')}
-        width={400}
-        field={slice.primary.image} />
-      <div>
-        <PrismicRichText components={components} field={slice.primary.title} />
-        <PrismicRichText components={components} field={slice.primary.text} />
+      <div className={clsx("flex flex-col md:flex-row justify-center items-center gap-4 md:gap-40", 
+      slice.variation === 'revert' && "md:flex-row-reverse"
+      )}>
+        <PrismicNextImage
+          width={400}
+          field={slice.primary.image} />
+        <div>
+          <PrismicRichText components={components} field={slice.primary.title} />
+          <PrismicRichText components={components} field={slice.primary.text} />
+        </div>
       </div>
     </Bounded>
   );
