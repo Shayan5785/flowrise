@@ -2,7 +2,8 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import { Nunito, Nunito_Sans } from 'next/font/google'
 import './globals.css'
 import clsx from 'clsx'
-import { createClient } from '@/prismicio'
+import { createClient, repositoryName } from '@/prismicio'
+import { PrismicPreview } from '@prismicio/next'
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 
@@ -49,6 +50,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <PrismicPreview repositoryName={repositoryName} /> 
       </body>
     </html>
   )
